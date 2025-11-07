@@ -1,0 +1,18 @@
+# 服务器配置
+server:
+  port: "8080"        # 服务端口
+  mode: "debug"       # 运行模式: debug 或 release
+
+# 数据库配置
+database:
+  path: "./blog.db"   # SQLite数据库文件路径
+
+# JWT配置
+jwt:
+  secret: "your-secret-key-change-this-in-production"  # JWT密钥，生产环境请务必修改
+  expire: 168         # Token过期时间（小时），默认7天
+
+# CORS配置
+cors:
+  allow_origins:
+    - "*"             # 允许的来源，生产环境建议指定具体域名

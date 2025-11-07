@@ -1,0 +1,46 @@
+# 二进制文件
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+blog-server
+
+# 测试二进制文件
+*.test
+test-blog
+
+# 输出覆盖率文件
+*.out
+
+# 依赖模块
+vendor/
+
+# Go工作空间文件
+go.work
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 配置文件
+config.yaml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 临时文件
+tmp/
+temp/
