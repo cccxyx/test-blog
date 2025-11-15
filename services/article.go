@@ -52,6 +52,21 @@ func GetUserArticles(userID uint) ([]models.Article, error) {
 	return articles, nil
 }
 
+// GetArticleByID 根据ID获取文章
+func GetArticleByID(articleID uint) (*models.Article, error) {
+	db := database.GetDB()
+
+	var article models.Article
+	if err := db.Preload("User").First(&article, articleID).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return nil, errors.New("文章不存在")
+		}
+		return nil, errors.New("查询文章失败")
+	}
+
+	return &article, nil
+}
+
 // UpdateArticle 更新文章
 func UpdateArticle(articleID, userID uint, title, content string) (*models.Article, error) {
 	db := database.GetDB()

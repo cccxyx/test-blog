@@ -30,6 +30,7 @@ func SetupRouter() *gin.Engine {
 		// 公开的文章查询接口
 		api.GET("/articles", handlers.GetAllArticles)
 		api.GET("/articles/user/:user_id", handlers.GetArticlesByUser)
+		api.GET("/articles/:id", handlers.GetArticleByID)
 
 		// 需要认证的路由
 		auth := api.Group("")

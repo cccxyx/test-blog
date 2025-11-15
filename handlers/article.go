@@ -127,6 +127,41 @@ func GetArticlesByUser(c *gin.Context) {
 	utils.Success(c, response, "success")
 }
 
+// GetArticleByID 根据ID获取文章
+func GetArticleByID(c *gin.Context) {
+	// 获取文章ID参数
+	articleIDStr := c.Param("id")
+	articleID, err := strconv.ParseUint(articleIDStr, 10, 32)
+	if err != nil {
+		utils.Error(c, 400, "无效的文章ID")
+		return
+	}
+
+	// 调用服务层
+	article, err := services.GetArticleByID(uint(articleID))
+	if err != nil {
+		utils.Error(c, 404, err.Error())
+		return
+	}
+
+	// 构建响应
+	response := models.ArticleResponse{
+		ID:      article.ID,
+		Title:   article.Title,
+		Content: article.Content,
+		UserID:  article.UserID,
+		Author: models.UserResponse{
+			ID:       article.User.ID,
+			Username: article.User.Username,
+			Email:    article.User.Email,
+		},
+		CreatedAt: article.CreatedAt.Format("2006-01-02 15:04:05"),
+		UpdatedAt: article.UpdatedAt.Format("2006-01-02 15:04:05"),
+	}
+
+	utils.Success(c, response, "success")
+}
+
 // Update 更新文章
 func UpdateArticle(c *gin.Context) {
 	// 获取文章ID参数

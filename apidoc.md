@@ -137,7 +137,43 @@
 
 **响应**: 同获取所有文章
 
-#### 6. 创建文章
+#### 6. 根据ID获取文章详情
+
+**接口**: `GET /api/articles/:id`
+
+**路径参数**: `id` - 文章ID
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "title": "文章标题",
+    "content": "文章内容",
+    "user_id": 1,
+    "author": {
+      "id": 1,
+      "username": "testuser",
+      "email": "test@example.com"
+    },
+    "created_at": "2025-11-07 17:00:00",
+    "updated_at": "2025-11-07 17:00:00"
+  }
+}
+```
+
+**错误响应示例**:
+```json
+{
+  "code": 404,
+  "message": "文章不存在",
+  "data": null
+}
+```
+
+#### 7. 创建文章
 
 **接口**: `POST /api/articles`
 
@@ -172,7 +208,7 @@
 }
 ```
 
-#### 7. 更新文章
+#### 8. 更新文章
 
 **接口**: `PUT /api/articles/:id`
 
@@ -190,7 +226,7 @@
 
 **响应**: 同创建文章
 
-#### 8. 删除文章
+#### 9. 删除文章
 
 **接口**: `DELETE /api/articles/:id`
 
